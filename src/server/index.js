@@ -1,6 +1,5 @@
-const projectData = {};
+projectData = {};
 const path = require('path')
-const mockAPIResponse = require('./mockAPI.js')
 
 // Encrypt your personal API key
 const dotenv = require('dotenv');
@@ -35,20 +34,11 @@ let baseURL = 'https://api.meaningcloud.com/sentiment-2.1?key=';
 let apiKey = process.env.API_KEY;
 let inputURL = "";
 
-const json = {
-    'title': 'test json response',
-    'message': 'this is a message',
-    'time': 'now'
-}
-
-console.log(JSON.stringify(mockAPIResponse))
+// Require Fetch
+const fetch = require('node-fetch');
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
-})
-
-app.get('/test', function (req, res) {
-    res.json(mockAPIResponse);
 })
 
 // designates what port the app will listen to for incoming requests
@@ -56,3 +46,29 @@ app.listen(8081, function () {
     console.log('Listening on port 8081!');
 })
 
+
+// Post
+app.post('/meaningCloud', addMC);
+
+async function addMC(req, res) {
+
+    inputURL = req.body.url;
+
+    const response = await fetch(`${baseURL}${apiKey}&url=${inputURL}&lang=en`)
+
+    try {
+        const mcData = await response.json()
+        const projectData = {
+            input_text: inputURL,
+            score_tag: mcData.score_tag,
+            agreement: mcData.agreement,
+            subjectivity: mcData.subjectivity,
+            confidence: mcData.confidence,
+            irony: mcData.irony
+        }
+        console.log(projectData);
+        res.send(projectData);
+    } catch (error) {
+        console.log('error', error);
+    }
+}

@@ -3,36 +3,54 @@
 <head>
     <meta charset="utf-8">
     <title>Test</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/src/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/src/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/src/img/favicon-16x16.png">
 </head>
 
 <body>
 
-<header>
-    <div class="">
-        Logo
-    </div>
-    <div class="">
-        navigation
-    </div>
-</header>
+<div class="container">
+    <header>
+        <div class="">
+            logo
+        </div>
+        <div class="">
+            navigation
+        </div>
+    </header>
+</div>
 
 <main>
-    <section>
-        <form class="" onsubmit="return Client.handleSubmit(event)">
-            <input id="url" type="text" name="input" value="" placeholder="Type in URL to check for sentiment">
-            <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
-                   onsubmit="return handleSubmit(event)">
-        </form>
-    </section>
+    <div class="container">
+        <section>
+            <form id="url-form" class="form" onsubmit="return Client.handleSubmit(event)">
+                <label for="url"></label><input id="url" class="form" type="text" name="input" value=""
+                                                placeholder="Type in URL to perform Sentiment Analysis">
+                <button id="submit" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
+                        onsubmit="return Client.handleSubmit(event)"><strong>Submit</strong></button>
+            </form>
+        </section>
 
-    <section>
-        <strong>Form Results:</strong>
-        <div id="results"></div>
-    </section>
+        <section class="results">
+            <strong class="title">Form Results:</strong>
+            <div id="input_text"></div>
+            <div id="score_tag"></div>
+            <div id="agreement"></div>
+            <div id="subjectivity"></div>
+            <div id="confidence"></div>
+            <div id="irony"></div>
+        </section>
+
+    </div>
 </main>
 
 <footer>
-    <p>This is a footer</p>
+
+    <div class="container">
+        <p>This is a footer</p>
+
+    </div>
 </footer>
 
 <script>
@@ -44,5 +62,6 @@
         });
     }
 </script>
+
 </body>
 </html>

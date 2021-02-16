@@ -1,23 +1,54 @@
-$font-stack: Helvetica, sans-serif;
-$font-main: Helvetica, sans-serif;
-$primary-color: gold;
-$secondary-color: pink;
-$theme-secondary: #000000;
-$font-main: fantasy;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500;1,600&display=swap');
+
+$font-main: 'Montserrat', sans-serif;
+$primary-color: pink;
+$secondary-color: #242424;
+$third-color: #e6e6e6;
 $theme-spacing: 25px;
 
+@import "resets.scss";
+@import "footer.scss";
+@import "form.scss";
+@import "header.scss";
+
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: $secondary-color;
+  font-family: $font-main;
+  font-size: 1em;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $primary-color;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+strong {
+  font-weight: 600;
 }
 
 main {
-    flex: 2;
+  flex: 2;
 }
 
 section {
-    max-width: 800px;
-    margin: 50px auto;
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* Override autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000000;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
